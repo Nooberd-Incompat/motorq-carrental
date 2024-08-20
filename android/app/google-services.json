@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "205833499108",
+    "project_id": "motorq-carrental",
+    "storage_bucket": "motorq-carrental.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205833499108:android:d132009cfe50bf40f397f1",
+        "android_client_info": {
+          "package_name": "com.example.carrental"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOGyYCF577XVX88WX0xq1J8sbbKxxaRz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205833499108:android:c0c43c69642a37b6f397f1",
+        "android_client_info": {
+          "package_name": "com.example.motorq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOGyYCF577XVX88WX0xq1J8sbbKxxaRz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
