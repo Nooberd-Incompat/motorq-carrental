@@ -7,7 +7,8 @@ class WishlistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String userId = "eHnOta8h3sAqSNa2hWvB"; // Replace with the actual user ID
+    String customerId =
+        "eHnOta8h3sAqSNa2hWvB"; // Replace with the actual customer ID
 
     return Scaffold(
       appBar: AppBar(
@@ -16,7 +17,7 @@ class WishlistPage extends StatelessWidget {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('wishlist')
-            .where('user_id', isEqualTo: userId)
+            .where('customer_id', isEqualTo: customerId) // Corrected field name
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {

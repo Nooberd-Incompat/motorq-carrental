@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:motorq/screens/login.dart';
 import 'package:motorq/screens/main_screen.dart';
 
 void main() async {
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         ),
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
       ),
-      home: MainScreen(),
+      home: DummyLoginScreen(),
     );
   }
 }

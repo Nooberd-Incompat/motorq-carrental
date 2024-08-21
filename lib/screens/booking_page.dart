@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:motorq/functions/email.dart';
 
 class BookingPage extends StatefulWidget {
   final String carId;
@@ -116,6 +117,16 @@ class _BookingPageState extends State<BookingPage> {
           .doc(widget.carId)
           .update({'status': 'booked'});
 
+      Future<void> notifyCustomer(
+          String customerEmail, String bookingDetails) async {
+        await sendEmail(
+          customerEmail,
+          'Booking Confirmation',
+          'Your booking has been confirmed. Details: $bookingDetails',
+        );
+      }
+
+      notifyCustomer("shashtasreeyojith.k22@iiits.in", "Booked");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Booking Confirmed')),
       );

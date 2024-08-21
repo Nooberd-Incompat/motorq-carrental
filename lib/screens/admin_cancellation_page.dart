@@ -69,6 +69,12 @@ class _AdminCancellationPageState extends State<AdminCancellationPage> {
   }
 
   Future<void> _approveCancellation(String bookingId) async {
+    DocumentSnapshot bookingSnapshot = await FirebaseFirestore.instance
+        .collection('bookings')
+        .doc(bookingId)
+        .get();
+    String carId = bookingSnapshot['car_id'];
+
     await FirebaseFirestore.instance
         .collection('bookings')
         .doc(bookingId)
@@ -76,6 +82,11 @@ class _AdminCancellationPageState extends State<AdminCancellationPage> {
       'cancellation_approved': true,
       'status': 'cancelled',
     });
+
+    await FirebaseFirestore.instance
+        .collection('cars')
+        .doc(carId)
+        .update({'status': 'available'});
   }
 
   Future<void> _rejectCancellation(String bookingId) async {
