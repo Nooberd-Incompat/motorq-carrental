@@ -27,34 +27,6 @@ Future<void> updateCarRating(String carId) async {
   }
 }
 
-Future<void> processCancellation(String cancellationId, String status) async {
-  CollectionReference cancellations =
-      FirebaseFirestore.instance.collection('cancellations');
-
-  return cancellations
-      .doc(cancellationId)
-      .update({
-        'status': status,
-        'updated_at': FieldValue.serverTimestamp(),
-      })
-      .then((value) => print("Cancellation Processed"))
-      .catchError((error) => print("Failed to process cancellation: $error"));
-}
-
-Future<void> updateBookingStatus(String bookingId, String status) async {
-  CollectionReference bookings =
-      FirebaseFirestore.instance.collection('bookings');
-
-  return bookings
-      .doc(bookingId)
-      .update({
-        'status': status,
-        'updated_at': FieldValue.serverTimestamp(),
-      })
-      .then((value) => print("Booking Status Updated"))
-      .catchError((error) => print("Failed to update booking status: $error"));
-}
-
 isCarAvailable(
     String carId, DateTime desiredStartDate, DateTime desiredEndDate) async {
   DocumentSnapshot carDoc =
@@ -128,4 +100,49 @@ void showErrorMessage(String message) {
 double calculatePrice(String carId, DateTime startDate, DateTime endDate) {
   // Example price calculation; adjust as needed
   return 100.0; // Placeholder value
+}
+
+// Function to request cancellation
+Future<void> requestCancellation(String bookingId) async {
+  CollectionReference bookings =
+      FirebaseFirestore.instance.collection('bookings');
+
+  return bookings
+      .doc(bookingId)
+      .update({
+        'cancellation_requested': true,
+        'status': 'pending_cancellation',
+      })
+      .then((value) => print("Cancellation Requested"))
+      .catchError((error) => print("Failed to request cancellation: $error"));
+}
+
+// Function to handle the processing of cancellation
+Future<void> processCancellation(String cancellationId, String status) async {
+  CollectionReference cancellations =
+      FirebaseFirestore.instance.collection('cancellations');
+
+  return cancellations
+      .doc(cancellationId)
+      .update({
+        'status': status,
+        'updated_at': FieldValue.serverTimestamp(),
+      })
+      .then((value) => print("Cancellation Processed"))
+      .catchError((error) => print("Failed to process cancellation: $error"));
+}
+
+// Function to update booking status
+Future<void> updateBookingStatus(String bookingId, String status) async {
+  CollectionReference bookings =
+      FirebaseFirestore.instance.collection('bookings');
+
+  return bookings
+      .doc(bookingId)
+      .update({
+        'status': status,
+        'updated_at': FieldValue.serverTimestamp(),
+      })
+      .then((value) => print("Booking Status Updated"))
+      .catchError((error) => print("Failed to update booking status: $error"));
 }
